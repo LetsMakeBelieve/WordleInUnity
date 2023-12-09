@@ -9,7 +9,7 @@ using System.IO;
 -check letters on keyboard for correct color (Edge Case: (SW: SWAMP Guess: MAMMA (issue with a not turning yellow)))
 -reset keyboard colors
 -shake effect on wrong word
--hide keyboard on game over (or make it darker)
+-edit background ui
 */
 
 public class Board : MonoBehaviour
