@@ -61,6 +61,7 @@ public class Board : MonoBehaviour
             }
         }
 
+        //keyboard.clearKeyboard();
         rowIndex = 0;
         colIndex = 0;
         typeLock = false;
@@ -236,7 +237,7 @@ public class Board : MonoBehaviour
     private int rowIndex = 0;
     private bool lastLetter = false;
     private Row[] rows;
-    public Keyboard keyboard;
+    public Keyboard keyboard; //public variable
     private string secretWord;
     private bool typeLock = false;
 

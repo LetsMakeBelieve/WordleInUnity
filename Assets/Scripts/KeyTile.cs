@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class KeyTile : MonoBehaviour
 {
+    private Color originalColor = new Color(1f, 1f, 1f);
     public char letter { get; private set; }
     private TextMeshProUGUI theText;
-    public Outline theOutline;
+    private Outline theOutline;
+    private bool green = false;
+    private bool yellow = false;
 
     private void Awake()
     {
@@ -17,13 +20,30 @@ public class KeyTile : MonoBehaviour
         letter = theText.text[0];
     }
 
+    public void setGreenBool(bool choice){
+        green = choice;
+    }
+    public bool isGreen(){
+        return green;
+    }
+
+    public void setYellowBool(bool choice){
+        yellow = choice;
+    }
+    public bool isYellow(){
+        return yellow;
+    }
+
     public char GetLetter()
     {
         return letter;
     }
 
-    public Color getColor(){
-        return theText.color;
+    public void clearKey(){
+        green = false;
+        yellow = false;
+        theText.color = originalColor;
+        theOutline.effectColor = originalColor;
     }
 
     public void changeColor(Color targetColor)
