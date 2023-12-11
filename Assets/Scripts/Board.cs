@@ -6,10 +6,10 @@ using System.IO;
 /*TODO LIST:
 -fix tileflip on restart
 -fix game over screen
--check letters on keyboard for correct color (Edge Case: (SW: SWAMP Guess: MAMMA (issue with a not turning yellow)))
--reset keyboard colors
 -shake effect on wrong word
 -edit background ui
+-issue with game not ending if you guess all six guesses wrong
+-add an interactive "How to Play" gui
 */
 
 public class Board : MonoBehaviour
@@ -61,7 +61,6 @@ public class Board : MonoBehaviour
             }
         }
 
-        //keyboard.clearKeyboard();
         rowIndex = 0;
         colIndex = 0;
         typeLock = false;
@@ -301,6 +300,7 @@ public class Board : MonoBehaviour
             {
                 CheckWord(secretWord);
             }
+            //issue somewhere around here where the game doesn't end on 6th word
             else if (colIndex == 4 && isValidWord() && rowIndex == 5)
             {
                 CheckWord(secretWord);

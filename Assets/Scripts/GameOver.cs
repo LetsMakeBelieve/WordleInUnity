@@ -10,6 +10,7 @@ public class GameOver : MonoBehaviour
     public TextMeshProUGUI SecretWord;
     public TextMeshProUGUI GuessNum;
     public Board gameBoard; 
+    public Keyboard keyboard;
 
     public Button RestartButton;
 
@@ -35,6 +36,7 @@ public class GameOver : MonoBehaviour
     public void ResetGameBoard()
     {
         gameBoard.ClearBoard();
+        keyboard.clearKeyboard();
         gameObject.SetActive(false);
     }
 }

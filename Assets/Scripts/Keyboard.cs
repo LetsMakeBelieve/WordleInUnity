@@ -94,16 +94,15 @@ public class Keyboard : MonoBehaviour
                 currentKey.changeColor(yellow);
                 currentKey.setYellowBool(true);
             }
-            else if (!currentKey.isYellow())//grey or any other color
+            else if (!currentKey.isYellow() && !currentKey.isGreen())//grey or any other color
             {
                 currentKey.changeColor(grey);
             }
         }
     }
 
-    /* WIP clear Keyboard function
+    // WIP clear Keyboard function
     public void clearKeyboard(){
-        Debug.Log(keyRows.Length);
         for(int i = 0; i < keyRows.Length; i++){
             for (int j = 0; j < keyRows[i].keys.Length; j++)
             {
@@ -111,5 +110,4 @@ public class Keyboard : MonoBehaviour
             }
         }
     }
-    */
 }
