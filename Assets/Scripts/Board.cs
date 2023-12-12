@@ -4,12 +4,14 @@ using UnityEngine;
 using System.IO;
 
 /*TODO LIST:
--fix tileflip on restart
--fix game over screen
--shake effect on wrong word
--edit background ui
--issue with game not ending if you guess all six guesses wrong
--add an interactive "How to Play" gui
+priority:
+    -fix tileflip on restart
+    -issue with game not ending if you guess all six guesses wrong
+secondary:
+    -fix game over screen
+    -shake effect on wrong word
+    -edit background ui
+    -add an interactive "How to Play" gui
 */
 
 public class Board : MonoBehaviour

@@ -17,20 +17,24 @@ public class Tile : MonoBehaviour
         letter = ' ';
     }
 
+    /// <summary>
+    /// set text in box to this letter
+    /// </summary>
+    /// <param name="letter">char it will be set to</param>
     public void SetLetter(char letter)
     {
         this.letter = letter;
         theText.text = letter.ToString();
     }
 
+    /// <summary>
+    /// return letter in specific box
+    /// </summary>
+    /// <returns></returns>
     public char GetLetter()
     {
         return letter;
     }
-
-    public float flipDuration = 1f;
-    private float flipTime = 0f;
-    private Vector3 originalScale;
 
     public void flip(Color color)
     {
@@ -48,7 +52,9 @@ public class Tile : MonoBehaviour
     /// <param name="color">Color the square should turn after guess (0 for green, 1 for yellow, 2 for grey)</param>
     private IEnumerator FlipAnimation(Color targetColor)
     {
-        originalScale = transform.localScale;
+        float flipDuration = .5f;   //time flip should be completed in
+        float flipTime = 0f;        //tracker of the flip
+        Vector3 originalScale = transform.localScale;
         bool flipped = false; // To check if we have flipped to the targetColor yet
 
         while (flipTime < flipDuration)
