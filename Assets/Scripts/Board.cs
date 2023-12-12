@@ -5,12 +5,9 @@ using System.IO;
 
 /*TODO LIST:
 priority:
-    -fix tileflip on restart
-    -issue with game not ending if you guess all six guesses wrong
-secondary:
-    -fix game over screen
     -shake effect on wrong word
-    -edit background ui
+secondary:
+    -improve game over screen
     -add an interactive "How to Play" gui
 */
 
@@ -123,7 +120,7 @@ public class Board : MonoBehaviour
         return guess;
     }
 
-    private IEnumerator FlipTilesWithDelay(string secretWord)
+    private IEnumerator FlipTilesWithDelay(string secretWord, bool win)
     {
         string guess = getGuess();
         Color rgbValue;
@@ -207,9 +204,17 @@ public class Board : MonoBehaviour
         }
 
         keyboard.changeKeyboardColor(guess, letterColor);
-
-        lastLetter = false;
-        typeLock = false;
+        
+        if(win){                            //guessed the word win
+            rowIndex--;
+            GameOver(true);     
+        } else if (!win && rowIndex <= 5){   //wrong word, but not out of guesses
+            lastLetter = false;
+            typeLock = false;
+        } else if(!win && rowIndex >= 5){   //no more guesses, lose
+            rowIndex--;
+            GameOver(false);    
+        }
     }
 
     /// <summary>
@@ -218,9 +223,9 @@ public class Board : MonoBehaviour
     /// </summary>
     /// <param name="secretWord"></param>
     /// <param name="">Pass in the secret word</param>
-    private void CheckWord(string secretWord)
+    private void CheckWord(string secretWord, bool win)
     {
-        StartCoroutine(FlipTilesWithDelay(secretWord));
+        StartCoroutine(FlipTilesWithDelay(secretWord, win));
     }
 
     /// <summary>
@@ -294,31 +299,11 @@ public class Board : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) && !typeLock)
         {
-            if (getGuess() == secretWord)
-            {
-                GameOver(true);
-                typeLock = true;
-            } else if (colIndex == 4 && isValidWord() && rowIndex < 5)
-            {
-                CheckWord(secretWord);
+            bool win = getGuess() == secretWord;
+
+            if (colIndex == 4 && isValidWord()){
+                CheckWord(secretWord, win);
             }
-            //issue somewhere around here where the game doesn't end on 6th word
-            else if (colIndex == 4 && isValidWord() && rowIndex == 5)
-            {
-                CheckWord(secretWord);
-                typeLock = true;
-
-                if(getGuess() == secretWord)
-                {
-                    GameOver(true);
-                } else
-                {
-                    GameOver(false);
-                }
-
-            }
-
-
         }
     }
 }
